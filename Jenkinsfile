@@ -18,7 +18,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
-                sh 'cmake --build . --target install'
+                sh 'cd build && cmake --build . --target install'
             }
         }
     }
