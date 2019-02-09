@@ -4,17 +4,22 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo 'Building...'
+                sh 'cmake -H. -Bbuild -DCMAKE_INSTALL_PREFIX:PATH=/tmp/foo'
+                sh 'cd build'
+                sh 'cmake --build .'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                echo 'Testing...'
+                sh 'ctest -V'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                echo 'Deploying...'
+                sh 'cmake --build . --target install'
             }
         }
     }
