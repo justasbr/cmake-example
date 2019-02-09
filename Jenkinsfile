@@ -6,8 +6,7 @@ pipeline {
             steps {
                 echo 'Building...'
                 sh 'cmake -H. -Bbuild -DCMAKE_INSTALL_PREFIX:PATH=/tmp/foo'
-                sh 'cd build'
-                sh 'cmake --build .'
+                sh 'cd build && cmake --build .'
             }
         }
         stage('Test') {
